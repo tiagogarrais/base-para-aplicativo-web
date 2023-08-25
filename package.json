@@ -1,0 +1,24 @@
+{
+  "name": "ufca",
+  "version": "1.0.0",
+  "description": "Serviços informatizados oferecidos no campus Brejo Santo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiagogarrais/ufca.git"
+  },
+  "author": "Tiago das Graças Arrais",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiagogarrais/ufca/issues"
+  },
+  "homepage": "https://github.com/tiagogarrais/ufca#readme",
+  "dependencies": {
+    "next": "^13.1.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
