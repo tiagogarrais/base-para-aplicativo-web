@@ -1,21 +1,21 @@
 {
-  "name": "ufca",
+  "name": "base-para-aplicativo-web",
   "version": "1.0.0",
-  "description": "Serviços informatizados oferecidos no campus Brejo Santo",
+  "description": "Instalação base para a criação de aplicativos web",
   "main": "index.js",
   "scripts": {
     "dev":"next dev"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tiagogarrais/ufca.git"
+    "url": "git+https://github.com/tiagogarrais/base-para-aplicativo-web.git"
   },
   "author": "Tiago das Graças Arrais",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tiagogarrais/ufca/issues"
+    "url": "https://github.com/tiagogarrais/base-para-aplicativo-web/issues"
   },
-  "homepage": "https://github.com/tiagogarrais/ufca#readme",
+  "homepage": "https://github.com/tiagogarrais/base-para-aplicativo-web#readme",
   "dependencies": {
     "next": "^13.1.6",
     "react": "^18.2.0",
