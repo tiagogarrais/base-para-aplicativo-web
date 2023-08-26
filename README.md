@@ -1,7 +1,7 @@
 # Base para aplicativo web
 Base para a criação de um aplicativo web. Essa instalação contém:
 
-- [ ] Node.js
-- [ ] Next.js
-- [ ] React
-- [ ] React-dom
+- [x] Node.js
+- [x] Next.js
+- [x] React
+- [x] React-dom
