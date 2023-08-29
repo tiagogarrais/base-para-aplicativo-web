@@ -5,3 +5,7 @@ Base para a criação de um aplicativo web. Essa instalação contém:
 - [x] Next.js
 - [x] React
 - [x] React-dom
+- [x] NextAuth.js
+- [x] Nodemailer
+- [ ] Credenciais para envio de e-mails no arquivo .env
+- [ ] Banco de dados para NextAuth.js (A definir)
