@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import EmailProvider from "next-auth/providers/email"
 
 export const authOptions = {
-  providers [
+  providers:[
           EmailProvider({
             server: {
               host: process.env.EMAIL_SERVER_HOST,
@@ -14,8 +14,8 @@ export const authOptions = {
             },
             from: process.env.EMAIL_FROM,
             maxAge: 45 * 24 * 60 * 60, // How long email links are valid for (45 days)
-          })
-  ],
+          }),
+        ]
 }
 
 export default NextAuth(authOptions)
