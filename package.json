@@ -11,7 +11,7 @@
     "url": "git+https://github.com/tiagogarrais/base-para-aplicativo-web.git"
   },
   "author": "Tiago das Graças Arrais",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tiagogarrais/base-para-aplicativo-web/issues"
   },
