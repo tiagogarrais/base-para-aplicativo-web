@@ -5,13 +5,9 @@ Um aplicativo web é basicamente um programa de computador que usa o navegador e
 Existem inúmeras formas de se montar e iniciar um aplicativo web. Para quem programa na linguagem Javascript, esta é a fórmula que eu uso e os aplicativos necessários (dependências) estão listados logo abaixo:
 
 - [x] Node.js
-
 - [x] Next.js
-
 - [x] React
-
 - [x] React-dom
-
 - [x] NextAuth.js
   - [x] Nodemailer
   - [ ] Credenciais para envio de e-mails no arquivo .env
