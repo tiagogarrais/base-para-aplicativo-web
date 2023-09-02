@@ -11,4 +11,4 @@ Existem inúmeras formas de se montar e iniciar um aplicativo web. Para quem pro
 - [x] NextAuth.js
   - [x] Nodemailer
   - [ ] Credenciais para envio de e-mails no arquivo .env
-  - [ ] Banco de dados para NextAuth.js (A definir)
+  - [ ] Banco de dados para NextAuth.js - Mongodb
