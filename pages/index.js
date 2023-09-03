@@ -7,8 +7,8 @@ export default function Home() {
     return (
       <>
         <h1>Esta é a página inicial</h1>
-        <Link href='/acesso-com-login'>Clique aqui para acessar a área protegida</Link>
-        
+        <p><Link href='/acesso-com-login'>Clique aqui para acessar a área protegida</Link></p>
+        <p><Link href='/api/restrito'>Clique aqui para acessar a API protegida</Link></p>        
       </>
     )
 
