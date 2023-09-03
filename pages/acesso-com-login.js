@@ -8,6 +8,7 @@ export default function AcessoComLogin() {
       <>
         Signed in as {session.user.email} <br />
         <button onClick={() => signOut()}>Sign out</button>
+        <p><Link href='/'>Voltar para a página inicial</Link></p>
       </>
     )
   }
@@ -15,7 +16,7 @@ export default function AcessoComLogin() {
     <>
       Você não está logado <br />
       <button onClick={() => signIn()}>Entrar</button><br/>
-      <Link href='/'>Voltar para a página inicial</Link>
+      <p><Link href='/'>Voltar para a página inicial</Link></p>
 
     </>
   )

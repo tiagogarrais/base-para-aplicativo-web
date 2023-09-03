@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "./[...nextauth].js"
+import { authOptions } from "./auth/[...nextauth].js"
 
 export default async (req, res) => {
   const session = await getServerSession(req, res, authOptions)
@@ -7,7 +7,7 @@ export default async (req, res) => {
   if (session) {
     res.send({
       content:
-        "Este conteúdo é protegido. Você está logado e por isso tem acesso.",
+        "Você está logado e por isso tem acesso a este conteúdo.",
     })
   } else {
     res.send({
