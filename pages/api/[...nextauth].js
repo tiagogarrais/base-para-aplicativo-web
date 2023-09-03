@@ -4,6 +4,9 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from "/lib/mongodb"
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
+  adapter: MongoDBAdapter(clientPromise),
+
   providers:[
           EmailProvider({
             server: {
@@ -20,4 +23,4 @@ export const authOptions = {
         ],
 }
 
-  export default NextAuth({adapter: MongoDBAdapter(clientPromise)}, authOptions)
+  export default NextAuth(authOptions)
