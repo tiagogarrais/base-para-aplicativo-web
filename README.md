@@ -1,4 +1,4 @@
-# Aplicativo Web com Autenticação por E-mail e Magic Links
+# Base para aplicativo web
 
 Este é um template de projeto para criação de aplicativos web que oferece autenticação segura por e-mail, utilizando magic links. É baseado em tecnologias populares, como Node.js, Next.js, React, NextAuth.js e Nodemailer, e foi projetado para simplificar o processo de início de projetos.
 
@@ -16,7 +16,7 @@ Para começar, você precisará das seguintes tecnologias:
 - **NextAuth.js**: Biblioteca para implementar autenticação segura.
   - **Nodemailer**: Para o envio de e-mails.
   - **Credenciais para envio de e-mails no arquivo .env**.
-  - **Banco de dados para NextAuth.js - MongoDB**.
+  - **Banco de dados para NextAuth.js - PostgreSQL**.
 
 ## Como Usar
 
