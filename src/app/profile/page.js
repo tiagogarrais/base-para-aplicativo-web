@@ -3,7 +3,7 @@
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import InputMask from "react-input-mask";
+import { IMaskInput } from "react-imask";
 
 export default function Profile() {
   const { data: session, status } = useSession();
@@ -116,10 +116,16 @@ export default function Profile() {
   };
 
   const handleDeleteAccount = async () => {
-    if (!confirm("Tem certeza de que deseja remover sua conta? Esta ação não pode ser desfeita.")) {
+    if (
+      !confirm(
+        "Tem certeza de que deseja remover sua conta? Esta ação não pode ser desfeita."
+      )
+    ) {
       return;
     }
-    const confirmation = prompt("Para confirmar, digite 'SIM' (em maiúsculas):");
+    const confirmation = prompt(
+      "Para confirmar, digite 'SIM' (em maiúsculas):"
+    );
     if (confirmation !== "SIM") {
       alert("Ação cancelada.");
       return;
@@ -248,21 +254,13 @@ export default function Profile() {
         </label>
         <label>
           CPF:
-          <InputMask
-            mask="999.999.999-99"
+          <IMaskInput
+            mask="000.000.000-00"
             value={formData.cpf}
-            onChange={(e) => setFormData({ ...formData, cpf: e.target.value })}
-            required
-          >
-            {(inputProps) => (
-              <input
-                {...inputProps}
-                type="text"
-                placeholder="000.000.000-00"
-                style={{ padding: 8, width: "100%" }}
-              />
-            )}
-          </InputMask>
+            onAccept={(value) => setFormData({ ...formData, cpf: value })}
+            placeholder="000.000.000-00"
+            style={{ padding: 8, width: "100%" }}
+          />
         </label>
         <label>
           WhatsApp (opcional):
@@ -277,36 +275,29 @@ export default function Profile() {
               }
               style={{ padding: 8, minWidth: 120 }}
             >
-              {countries.map((country) => (
-                <option key={country.ddi} value={country.ddi}>
+              {countries.map((country, index) => (
+                <option key={index} value={country.ddi}>
                   +{country.ddi} {country.pais}
                 </option>
               ))}
             </select>
-            <InputMask
+            <IMaskInput
               mask={
                 formData.whatsappCountryCode === "55"
-                  ? "(99) 99999-9999"
-                  : "999999999999999"
+                  ? "(00) 00000-0000"
+                  : "000000000000000"
               }
               value={formData.whatsapp}
-              onChange={(e) =>
-                setFormData({ ...formData, whatsapp: e.target.value })
+              onAccept={(value) =>
+                setFormData({ ...formData, whatsapp: value })
               }
-            >
-              {(inputProps) => (
-                <input
-                  {...inputProps}
-                  type="tel"
-                  placeholder={
-                    formData.whatsappCountryCode === "55"
-                      ? "(11) 99999-9999"
-                      : "Número do telefone"
-                  }
-                  style={{ padding: 8, flex: 1 }}
-                />
-              )}
-            </InputMask>
+              placeholder={
+                formData.whatsappCountryCode === "55"
+                  ? "(11) 99999-9999"
+                  : "Número do telefone"
+              }
+              style={{ padding: 8, flex: 1 }}
+            />
           </div>
         </label>
         <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
