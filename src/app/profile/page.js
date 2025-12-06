@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
@@ -18,6 +18,7 @@ export default function Profile() {
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
   const [countries, setCountries] = useState([]);
 
   // Buscar lista de países
@@ -47,7 +48,7 @@ export default function Profile() {
         if (res.ok) {
           const data = await res.json();
           setFormData({
-            fullName: data.user.fullName || session.user.name || "",
+            fullName: data.user.fullName || "",
             birthDate: data.user.birthDate || "",
             cpf: data.user.cpf || "",
             whatsapp: data.user.whatsapp || "",
@@ -57,7 +58,7 @@ export default function Profile() {
         } else {
           // Se não conseguir buscar, usar dados da sessão como fallback
           setFormData({
-            fullName: session.user.fullName || session.user.name || "",
+            fullName: "",
             birthDate: session.user.birthDate
               ? new Date(session.user.birthDate).toISOString().split("T")[0]
               : "",
@@ -71,7 +72,7 @@ export default function Profile() {
         console.error("Erro ao buscar perfil:", error);
         // Fallback para dados da sessão
         setFormData({
-          fullName: session.user.fullName || session.user.name || "",
+          fullName: "",
           birthDate: session.user.birthDate
             ? new Date(session.user.birthDate).toISOString().split("T")[0]
             : "",
@@ -98,8 +99,7 @@ export default function Profile() {
 
     if (res.ok) {
       const data = await res.json();
-      // Dados salvos com sucesso - redirecionar para página inicial
-      router.push("/");
+      setSuccessMessage("Perfil salvo com sucesso!");
     } else {
       try {
         const errorData = await res.json();
@@ -111,6 +111,28 @@ export default function Profile() {
       } catch {
         setErrors(["Erro ao salvar perfil. Tente novamente."]);
       }
+    }
+    setLoading(false);
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!confirm("Tem certeza de que deseja remover sua conta? Esta ação não pode ser desfeita.")) {
+      return;
+    }
+    const confirmation = prompt("Para confirmar, digite 'SIM' (em maiúsculas):");
+    if (confirmation !== "SIM") {
+      alert("Ação cancelada.");
+      return;
+    }
+    setLoading(true);
+    const res = await fetch("/api/profile", {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      // Logout e redirecionar
+      await signOut({ callbackUrl: "/" });
+    } else {
+      alert("Erro ao remover conta. Tente novamente.");
     }
     setLoading(false);
   };
@@ -178,6 +200,21 @@ export default function Profile() {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {successMessage && (
+        <div
+          style={{
+            backgroundColor: "#d4edda",
+            color: "#155724",
+            padding: 12,
+            borderRadius: 4,
+            border: "1px solid #c3e6cb",
+            marginBottom: 20,
+          }}
+        >
+          {successMessage}
         </div>
       )}
 
@@ -297,6 +334,24 @@ export default function Profile() {
           {loading ? "Salvando..." : "Salvar Perfil"}
         </button>
       </form>
+
+      <button
+        onClick={handleDeleteAccount}
+        disabled={loading}
+        style={{
+          padding: 12,
+          backgroundColor: loading ? "#ccc" : "#dc3545",
+          color: "white",
+          border: "none",
+          borderRadius: 4,
+          cursor: loading ? "not-allowed" : "pointer",
+          marginTop: 15,
+          marginBottom: 50,
+          width: "100%",
+        }}
+      >
+        {loading ? "Removendo..." : "Remover Conta"}
+      </button>
     </div>
   );
 }

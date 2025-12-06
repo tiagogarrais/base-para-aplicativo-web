@@ -181,3 +181,23 @@ export async function GET(request) {
     return new Response("Erro ao buscar perfil", { status: 500 });
   }
 }
+
+export async function DELETE(request) {
+  const session = await getServerSession(authOptions);
+  if (!session) return new Response("Unauthorized", { status: 401 });
+
+  try {
+    // Deletar o usuário (isso cascadeará para contas, sessões e perfil devido ao onDelete: Cascade)
+    await prisma.user.delete({
+      where: { email: session.user.email },
+    });
+
+    return new Response(
+      JSON.stringify({ success: true, message: "Conta removida com sucesso" }),
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Erro ao remover conta:", error);
+    return new Response("Erro ao remover conta", { status: 500 });
+  }
+}
